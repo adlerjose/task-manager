@@ -3,6 +3,13 @@ def add_task(tasks, task_name):
     tasks.append(task)
     return f"Tarefa {task_name} adicionada com sucesso!"
 
+def view_task(tasks):
+    print("\nLista de Tarefas")
+    for index, task in enumerate(tasks, start=1):
+        status = "✓" if task["completed"] else " "
+        task_name = task["task"]
+        print(f"{index}. [{status}] {task_name}")
+
 tasks = []
 
 while True:
@@ -19,7 +26,9 @@ while True:
     match choice:
         case 1:
             task_name = input("Digite o nome do tarefa que deseja adicionar: ")
-            add_task(tasks, task_name)
+            print(add_task(tasks, task_name))
+        case 2:
+            view_task(tasks)
         case 6:
             break
 
