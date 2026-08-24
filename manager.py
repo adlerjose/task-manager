@@ -18,6 +18,11 @@ def update_task_name(tasks, task_index, new_task_name):
     else:
         return "Índice de tarefa inválido!"
 
+def complete_task(tasks, task_index):
+    ajusted_task_index = task_index - 1
+    tasks[ajusted_task_index]["completed"] = True
+    return f"Tarefa {task_index} completada com sucesso!"
+
 tasks = []
 
 while True:
@@ -42,6 +47,9 @@ while True:
             task_index = int(input("Digite o número da tarefa que deseja atualizar: "))
             new_name = input("Digite o novo nome da tarefa: ")
             print(update_task_name(tasks, task_index, new_name))
+        case 4:
+            task_index = int(input("Digite o número da tarefa que deseja completar: "))
+            print(complete_task(tasks, task_index))
         case 6:
             break
 
