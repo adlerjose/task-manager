@@ -23,15 +23,21 @@ def complete_task(tasks, task_index):
     tasks[ajusted_task_index]["completed"] = True
     return f"Tarefa {task_index} completada com sucesso!"
 
+def delete_completed_task(tasks):
+    for task in tasks:
+        if task["completed"]:
+            tasks.remove(task)
+    return "Tarefa completada(s) deletada(s) com sucesso!"
+
 tasks = []
 
 while True:
     print("\nGerenciador de Tarefas:")
     print("1. Adicionar tarefa")
-    print("2. Visualizar tarefa")
+    print("2. Visualizar tarefa(s)")
     print("3. Atualizar nome da tarefa")
     print("4. Completar tarefa")
-    print("5. Deletar tarefa completada")
+    print("5. Deletar tarefa(s) completada(s)")
     print("6. Sair")
 
     choice = int(input("Digite uma opção: "))
@@ -48,8 +54,12 @@ while True:
             new_name = input("Digite o novo nome da tarefa: ")
             print(update_task_name(tasks, task_index, new_name))
         case 4:
+            view_task(tasks)
             task_index = int(input("Digite o número da tarefa que deseja completar: "))
             print(complete_task(tasks, task_index))
+        case 5:
+            print(delete_completed_task(tasks))
+            view_task(tasks)
         case 6:
             break
 
