@@ -1,35 +1,35 @@
-def add_task(tasks, task_name):
+def add_task(tasks: list[dict[str, str | bool]], task_name: str) -> str:
     task = {"task": task_name, "completed": False}
     tasks.append(task)
     return f"Tarefa {task_name} adicionada com sucesso!"
 
-def view_task(tasks):
+def view_task(tasks: list[dict[str, str | bool]]) -> None:
     print("\nLista de Tarefas")
     for index, task in enumerate(tasks, start=1):
         status = "✓" if task["completed"] else " "
         task_name = task["task"]
         print(f"{index}. [{status}] {task_name}")
 
-def update_task_name(tasks, task_index, new_task_name):
-    ajusted_task_index = task_index - 1
-    if 0 <= ajusted_task_index < len(tasks):
-        tasks[ajusted_task_index]["task"] = new_task_name
+def update_task_name(tasks: list[dict[str, str | bool]], task_index: int, new_task_name: str) -> str:
+    adjusted_task_index = task_index - 1
+    if 0 <= adjusted_task_index < len(tasks):
+        tasks[adjusted_task_index]["task"] = new_task_name
         return f"Tarefa {task_index} atualizada para {new_task_name}"
     else:
         return "Índice de tarefa inválido!"
 
-def complete_task(tasks, task_index):
-    ajusted_task_index = task_index - 1
-    tasks[ajusted_task_index]["completed"] = True
+def complete_task(tasks: list[dict[str, str | bool]], task_index: int) -> str:
+    adjusted_task_index = task_index - 1
+    tasks[adjusted_task_index]["completed"] = True
     return f"Tarefa {task_index} completada com sucesso!"
 
-def delete_completed_task(tasks):
+def delete_completed_task(tasks: list[dict[str, str | bool]]) -> str:
     for task in tasks:
         if task["completed"]:
             tasks.remove(task)
     return "Tarefa completada(s) deletada(s) com sucesso!"
 
-tasks = []
+tasks: list[dict[str, str | bool]] = []
 
 while True:
     print("\nGerenciador de Tarefas:")
